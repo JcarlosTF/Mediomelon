@@ -1,0 +1,300 @@
+{
+	"info": {
+		"_postman_id": "1a0b9491-bb30-4e97-b3a1-1b2ad6c92277",
+		"name": "Series API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"apikey\": \"PPDZ39EGKOEHNR3R\",\n  \"userkey\": \"JOEZYXMFGR0RDBXA\",\n  \"username\": \"tavromero2yu\"\n}"
+				},
+				"url": {
+					"raw": "https://{{endpoint}}/login",
+					"protocol": "https",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"login"
+					]
+				},
+				"description": "Returns a session token to be included in the rest of the requests. Note that API key authentication is required for all subsequent requests and user auth is required for routes in the User section"
+			},
+			"response": []
+		},
+		{
+			"name": "Search series",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://{{endpoint}}/search/series?name=game",
+					"protocol": "https",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"search",
+						"series"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "game"
+						}
+					]
+				},
+				"description": "Allows the user to search for a series based on the following parameters."
+			},
+			"response": []
+		},
+		{
+			"name": "Get Serie details",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://{{endpoint}}/series/:id",
+					"protocol": "https",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"series",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "121361"
+						}
+					]
+				},
+				"description": "Returns a series records that contains all information known about a particular series id."
+			},
+			"response": []
+		},
+		{
+			"name": "GET Serie Details 2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://{{omdb_endpoint}}/?i=tt0944947&apikey={{omdb_apikey}}&plot=full",
+					"protocol": "https",
+					"host": [
+						"{{omdb_endpoint}}"
+					],
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "i",
+							"value": "tt0944947"
+						},
+						{
+							"key": "apikey",
+							"value": "{{omdb_apikey}}"
+						},
+						{
+							"key": "plot",
+							"value": "full"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get serie actors",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://{{endpoint}}/series/:id/actors",
+					"protocol": "https",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"series",
+						":id",
+						"actors"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "121361"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get serie episodes by season",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://{{endpoint}}/series/:id/episodes/query?airedSeason=1",
+					"protocol": "https",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"series",
+						":id",
+						"episodes",
+						"query"
+					],
+					"query": [
+						{
+							"key": "airedSeason",
+							"value": "1"
+						}
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "121361",
+							"description": "\n"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer"
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "40e64b9d-3ac6-493e-b0f4-855aded400bb",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "736cae80-8fc1-4a7c-a3bd-20592f3f491b",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "bb7dce37-19f5-487f-9563-bfedefd21f69",
+			"key": "apikey",
+			"value": "PPDZ39EGKOEHNR3R",
+			"type": "string"
+		},
+		{
+			"id": "436fb610-45b4-47c1-97c8-a3728c02b5cb",
+			"key": "userkey",
+			"value": "JOEZYXMFGR0RDBXA",
+			"type": "string"
+		},
+		{
+			"id": "98a14de4-d834-48ec-9e44-a839d548b096",
+			"key": "username",
+			"value": "tavromero2yu",
+			"type": "string"
+		},
+		{
+			"id": "0dff0b22-11fb-4c45-afdb-61b58a9e8fdf",
+			"key": "endpoint",
+			"value": "api.thetvdb.com",
+			"type": "string"
+		},
+		{
+			"id": "8e2393ba-50a3-469c-aac7-957e5d1446d2",
+			"key": "token",
+			"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NTAwODMwNjIsImlkIjoiRGVtbyBQcm9qZWN0Iiwib3JpZ19pYXQiOjE1NDk5OTY2NjIsInVzZXJpZCI6NTIwMjgwLCJ1c2VybmFtZSI6InRhdnJvbWVybzJ5dSJ9.WaSDJf4AFTaAvE3IKVH68YueVy8_aIEBzOwjW6e2TwdokhHPpdEZTxTS5e0do8M2KyOWTcgoJ1O3juxFtZ60LY5-uy19GlvhfQkUizpJzLK6rRm__spwNBzCd8EH--5H6x9zmngOrJcoalfaPA-d66_3NKAkZhEzfhseRR0LS5AOLwu61Z2FdjkTEmqpB0CZ3Jg5q-M1Y_hsBR7ynTr1zgq2_tU0nGQcj1RYdJCUbpz7lklbQYQwxfyU3cO-bhpIjLyv7ZA6KyNFbotAsdUCn6Lb-k1yEA2BGY3hS2rUo1bEuxKOOuyqgGHmHm_MS9_L_-LtALTkSiQVg-PS4nlkdg",
+			"type": "string"
+		},
+		{
+			"id": "9f28f6f8-6812-4124-8e25-dbd13b08b7db",
+			"key": "omdb_endpoint",
+			"value": "omdbapi.com",
+			"type": "string"
+		},
+		{
+			"id": "a347be92-1a25-42d8-93e8-293202c6b099",
+			"key": "omdb_apikey",
+			"value": "2f1f55d7",
+			"type": "string"
+		}
+	]
+}
